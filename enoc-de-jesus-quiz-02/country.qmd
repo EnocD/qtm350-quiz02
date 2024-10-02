@@ -1,0 +1,62 @@
+---
+title: "Life expectancy, GDP, and population by country"
+
+---
+This page explores life expectancy, GDP, and population by country over time. 
+
+```{python}
+# Install packages
+# !pip install pandas gapminder
+
+# Import necessary libraries
+import pandas as pd
+from gapminder import gapminder
+
+# Rename 'lifeExp' to 'life_expectancy' and 'gdpPercap' to 'gdp_per_capita'
+gapminder = gapminder.rename(columns={'lifeExp': 'life_expectancy',
+                                      'pop': 'population_millions', 
+                                      'gdpPercap': 'gdp_per_capita'})
+
+# Convert population to millions
+gapminder['population_millions'] = gapminder['population_millions'] / 1_000_000
+
+# Create a new pandas DataFrame from the modified gapminder data
+gapminder_df = pd.DataFrame(gapminder)
+
+# Save the DataFrame as a CSV file
+gapminder_df.to_csv('gapminder.csv', index=False)
+```
+```{python}
+import matplotlib.pyplot as plt
+
+# Filter for a specific country
+country_name = "United States"
+country_data = gapminder[gapminder['country'] == country_name]
+plt.figure(figsize=(14, 8))
+
+# Life Expectancy
+plt.subplot(3, 1, 1)  # 3 rows, 1 column, 1st subplot
+plt.plot(country_data['year'], country_data['life_expectancy'])
+plt.title(f'Changes in Life Expectancy, GDP per Capita, and Population for {country_name}')
+plt.ylabel('Life Expectancy (Years)')
+plt.grid(True)
+plt.legend()
+
+# GDP per Capita
+plt.subplot(3, 1, 2) 
+plt.plot(country_data['year'], country_data['gdp_per_capita'], color='g')
+plt.ylabel('GDP per Capita (USD)')
+plt.grid(True)
+plt.legend()
+
+# Population
+plt.subplot(3, 1, 3)  
+plt.plot(country_data['year'], country_data['population_millions'],color='r')
+plt.ylabel('Population')
+plt.xlabel('Year')
+plt.grid(True)
+plt.legend()
+
+plt.show()
+
+```

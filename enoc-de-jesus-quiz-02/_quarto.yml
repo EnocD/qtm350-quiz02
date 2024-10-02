@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "enoc-de-jesus-quiz-02"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: life-gdp.qmd
+        text: Life and GDP
+      - href: life-population.qmd
+        text: Life and Population
+      - href: country.qmd
+        text: Country Analysis
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+    toc: true
+
+
+

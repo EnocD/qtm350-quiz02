@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "life-population.html",
+    "href": "life-population.html",
+    "title": "Life Expectancy and Population",
+    "section": "",
+    "text": "This page gives you the relationship between life expectancy and population.\n\n# Install packages\n# !pip install pandas gapminder\n\n# Import necessary libraries\nimport pandas as pd\nfrom gapminder import gapminder\n\n# Rename 'lifeExp' to 'life_expectancy' and 'gdpPercap' to 'gdp_per_capita'\ngapminder = gapminder.rename(columns={'lifeExp': 'life_expectancy',\n                                      'pop': 'population_millions', \n                                      'gdpPercap': 'gdp_per_capita'})\n\n# Convert population to millions\ngapminder['population_millions'] = gapminder['population_millions'] / 1_000_000\n\n# Create a new pandas DataFrame from the modified gapminder data\ngapminder_df = pd.DataFrame(gapminder)\n\n# Save the DataFrame as a CSV file\ngapminder_df.to_csv('gapminder.csv', index=False)\n\n\nimport matplotlib.pyplot as plt\nplt.figure(figsize=(10, 6))\nscatter = plt.scatter(gapminder_df['population_millions'], gapminder_df['life_expectancy'], \n                      s=gapminder_df['population_millions'], #size\n                      alpha=0.6, \n                      c=gapminder_df['continent'].astype('category').cat.codes,  # Convert continents to codes for color\n                      cmap='viridis')\n                    \nplt.title('Relationship Between Life Expectancy and Population')\nplt.xlabel('Population (Millions)')\nplt.ylabel('Life Expectancy (Years)')\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n```"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Title of Quiz 02",
+    "section": "",
+    "text": "This site shows about the Gapminder dataset. ## Pages - About - Life and GDP - Life and Population - Country Analysis"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "country.html",
+    "href": "country.html",
+    "title": "Life expectancy, GDP, and population by country",
+    "section": "",
+    "text": "This page explores life expectancy, GDP, and population by country over time.\n\n# Install packages\n# !pip install pandas gapminder\n\n# Import necessary libraries\nimport pandas as pd\nfrom gapminder import gapminder\n\n# Rename 'lifeExp' to 'life_expectancy' and 'gdpPercap' to 'gdp_per_capita'\ngapminder = gapminder.rename(columns={'lifeExp': 'life_expectancy',\n                                      'pop': 'population_millions', \n                                      'gdpPercap': 'gdp_per_capita'})\n\n# Convert population to millions\ngapminder['population_millions'] = gapminder['population_millions'] / 1_000_000\n\n# Create a new pandas DataFrame from the modified gapminder data\ngapminder_df = pd.DataFrame(gapminder)\n\n# Save the DataFrame as a CSV file\ngapminder_df.to_csv('gapminder.csv', index=False)\n\n\nimport matplotlib.pyplot as plt\n\n# Filter for a specific country\ncountry_name = \"United States\"\ncountry_data = gapminder[gapminder['country'] == country_name]\nplt.figure(figsize=(14, 8))\n\n# Life Expectancy\nplt.subplot(3, 1, 1)  # 3 rows, 1 column, 1st subplot\nplt.plot(country_data['year'], country_data['life_expectancy'])\nplt.title(f'Changes in Life Expectancy, GDP per Capita, and Population for {country_name}')\nplt.ylabel('Life Expectancy (Years)')\nplt.grid(True)\nplt.legend()\n\n# GDP per Capita\nplt.subplot(3, 1, 2) \nplt.plot(country_data['year'], country_data['gdp_per_capita'], color='g')\nplt.ylabel('GDP per Capita (USD)')\nplt.grid(True)\nplt.legend()\n\n# Population\nplt.subplot(3, 1, 3)  \nplt.plot(country_data['year'], country_data['population_millions'],color='r')\nplt.ylabel('Population')\nplt.xlabel('Year')\nplt.grid(True)\nplt.legend()\n\nplt.show()\n\nNo artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.\nNo artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.\nNo artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument."
+  },
+  {
+    "objectID": "life-gdp.html",
+    "href": "life-gdp.html",
+    "title": "Life exp and GDP per capita",
+    "section": "",
+    "text": "This page shows you the relationship between life expactancy and GDP per capita.\n\n# Install packages\n# !pip install pandas gapminder\n\n# Import necessary libraries\nimport pandas as pd\nfrom gapminder import gapminder\n\n# Rename 'lifeExp' to 'life_expectancy' and 'gdpPercap' to 'gdp_per_capita'\ngapminder = gapminder.rename(columns={'lifeExp': 'life_expectancy',\n                                      'pop': 'population_millions', \n                                      'gdpPercap': 'gdp_per_capita'})\n\n# Convert population to millions\ngapminder['population_millions'] = gapminder['population_millions'] / 1_000_000\n\n# Create a new pandas DataFrame from the modified gapminder data\ngapminder_df = pd.DataFrame(gapminder)\n\n# Save the DataFrame as a CSV file\ngapminder_df.to_csv('gapminder.csv', index=False)\n\n\nimport matplotlib.pyplot as plt\nplt.figure(figsize=(10, 6))\nscatter = plt.scatter(gapminder_df['gdp_per_capita'], gapminder_df['life_expectancy'], \n                      s=gapminder_df['population_millions'], #size\n                      alpha=0.6, \n                      c=gapminder_df['continent'].astype('category').cat.codes,  # Convert continents to codes for color\n                      cmap='viridis')\n                    \nplt.title('Relationship Between Life Expectancy and GDP per Capita')\nplt.xlabel('GDP per Capita (USD)')\nplt.ylabel('Life Expectancy (Years)')\nplt.grid(True)\nplt.show()"
+  }
+]

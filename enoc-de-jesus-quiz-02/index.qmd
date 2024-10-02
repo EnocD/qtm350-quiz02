@@ -1,0 +1,10 @@
+---
+title: "Title of Quiz 02"
+---
+
+This site shows about the Gapminder dataset.
+## Pages
+- [About](about.qmd)
+- [Life and GDP](life-gdp.qmd)
+- [Life and Population](life-population.qmd)
+- [Country Analysis](country.qmd)
